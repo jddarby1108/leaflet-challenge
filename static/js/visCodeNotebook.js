@@ -6,7 +6,7 @@ var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&
 
 function getMarkerOptions(feature){
   var geojsonMarkerOptions = {
-    radius: feature.properties.mag * 5,
+    radius: feature.properties.mag * 30,
     // radius: 8,
     fillColor: "#00ffff",
     color: "#001",
