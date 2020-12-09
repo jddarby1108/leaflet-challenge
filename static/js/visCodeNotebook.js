@@ -1,17 +1,18 @@
 // Store our API endpoint inside queryUrl
-var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-11-16&endtime=" +
-  "2020-11-17&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
+var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-12-01&endtime=" +
+  "2020-12-07&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
 
+  
 
 function getMarkerOptions(feature){
   var geojsonMarkerOptions = {
-    radius: feature.properties.mag * 3,
+    radius: feature.properties.mag * 5,
     // radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
+    fillColor: "#00ffff",
+    color: "#001",
     weight: 1,
     opacity: 1,
-    fillOpacity: feature.geometry.coordinates[2] * 0.1
+    fillOpacity: feature.geometry.coordinates[2] * 0.05
   };
   return geojsonMarkerOptions;
 }
@@ -36,7 +37,7 @@ function addPopup(feature, layer) {
   // Give each feature a popup describing the place and time of the earthquake
   return layer.bindPopup(`<h3> ${feature.properties.place} </h3> <hr> 
                           <p> ${Date(feature.properties.time)} </p>
-                          <p> ${feature.geometry.coordinates[2]} </p>`);
+                          <p> Depth: ${feature.geometry.coordinates[2]} </p>`);
 }
 
 // function to receive a layer of markers and plot them on a map.
@@ -79,4 +80,6 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+
 }
